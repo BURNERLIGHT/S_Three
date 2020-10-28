@@ -79,7 +79,7 @@ public class DBManager {
         db.beginTransaction();
         try {
             cursor = db.query(DatabaseHelper.MUSIC_TABLE, null, null, null, null, null, null);
-            musicInfoList = cursorToMusicList(cursor);
+            musicInfoList = cursorToMusicList(cursor);    //把Cursor对象转为List<MusicInfo>对象
             db.setTransactionSuccessful();
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,7 +100,7 @@ public class DBManager {
         db.beginTransaction();
         try {
             cursor = db.query(DatabaseHelper.MUSIC_TABLE, null, ID_COLUMN + " = ?", new String[]{"" + id}, null, null, null);
-            musicInfoList = cursorToMusicList(cursor);
+            musicInfoList = cursorToMusicList(cursor);  //把Cursor对象转为List<MusicInfo>对象
             musicInfo = musicInfoList.get(0);
             db.setTransactionSuccessful();
         } catch (Exception e) {

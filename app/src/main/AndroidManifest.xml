@@ -55,10 +55,7 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/PlaylistActivityTheme" />
-        <activity
-            android:name=".activity.LastMyloveActivity"
-            android:label=""
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.PlaylistActivity"
             android:screenOrientation="portrait"

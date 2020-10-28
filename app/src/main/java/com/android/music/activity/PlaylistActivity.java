@@ -94,7 +94,7 @@ public class PlaylistActivity extends PlayBarBaseActivity {
 
         playlistAdapter.setOnItemClickListener(new PlaylistAdapter.OnItemClickListener() {
             @Override
-            public void onOpenMenuClick(int position) {
+            public void onOpenMenuClick(int position) {     //打开播放列表界面
                 MusicInfo musicInfo = musicInfoList.get(position);
                 showPopFormBottom(musicInfo);
             }

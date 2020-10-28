@@ -81,7 +81,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
         holder.musicName.setText(musicInfo.getName());
         holder.musicIndex.setText("" + (position + 1));
         holder.musicSinger.setText(musicInfo.getSinger());
-        if (musicInfo.getId() == MyMusicUtil.getIntShared(Constant.KEY_ID)){
+        if (musicInfo.getId() == MyMusicUtil.getIntShared(Constant.KEY_ID)){//点击音乐让文本变色
             holder.musicName.setTextColor(context.getResources().getColor(R.color.colorAccent));
             holder.musicIndex.setTextColor(context.getResources().getColor(R.color.colorAccent));
             holder.musicSinger.setTextColor(context.getResources().getColor(R.color.colorAccent));

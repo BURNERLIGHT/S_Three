@@ -26,7 +26,6 @@ import com.android.music.util.ChineseToEnglish;
 import com.android.music.util.Constant;
 import com.android.music.util.CustomAttrValueUtil;
 import com.android.music.util.MyMusicUtil;
-import com.android.music.util.SelectorUtil;
 import com.android.music.view.ScanView;
 
 import java.io.File;
@@ -297,7 +296,7 @@ public class ScanActivity extends BaseActivity {
         int pressColor = CustomAttrValueUtil.getAttrColorValue(R.attr.press_color,R.color.colorAccent,this);
         Drawable backgroundDrawable =  scanBtn.getBackground();
         StateListDrawable sld = (StateListDrawable) backgroundDrawable;// 通过向下转型，转回原型，selector对应的Java类为：StateListDrawable
-        SelectorUtil.changeViewColor(sld,new int[]{pressColor,defColor});
+
     }
 
     @Override

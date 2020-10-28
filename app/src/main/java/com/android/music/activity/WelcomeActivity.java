@@ -11,20 +11,11 @@ import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.android.music.R;
 import com.android.music.database.DBManager;
-import com.android.music.util.HttpUtil;
-import com.android.music.util.MyApplication;
-import com.android.music.util.MyMusicUtil;
 
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 /**
  * 启动页
@@ -42,7 +33,7 @@ public class WelcomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        bingIv = (ImageView)findViewById(R.id.welcome_bing_iv);
+
         loadBingPic();
         dbManager = DBManager.getInstance(getApplicationContext());
         sharepreferences=this.getSharedPreferences("check", MODE_PRIVATE);

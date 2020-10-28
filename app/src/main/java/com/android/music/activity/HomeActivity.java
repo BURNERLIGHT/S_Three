@@ -22,23 +22,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.android.music.R;
 import com.android.music.adapter.HomeListViewAdapter;
 import com.android.music.database.DBManager;
 import com.android.music.entity.PlayListInfo;
 import com.android.music.service.MusicPlayerService;
 import com.android.music.util.Constant;
-import com.android.music.util.HttpUtil;
-import com.android.music.util.MyApplication;
-import com.android.music.util.MyMusicUtil;
 
-import java.io.IOException;
 import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 /**
  * 首页
@@ -95,11 +86,7 @@ public class HomeActivity extends PlayBarBaseActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 mDrawerLayout.closeDrawers();
                 switch (item.getItemId()){
-                    //关于
-                    case R.id.nav_about_me:
-                        Intent aboutTheme = new Intent(HomeActivity.this,AboutActivity.class);
-                        startActivity(aboutTheme);
-                        break;
+
                         //退出登录
                     case R.id.nav_logout:
                         finish();
@@ -130,10 +117,7 @@ public class HomeActivity extends PlayBarBaseActivity {
         count = dbManager.getMusicCount(Constant.LIST_ALLMUSIC);
         localMusicCountTv.setText(count + "");
         count = dbManager.getMusicCount(Constant.LIST_LASTPLAY);
-        lastPlayCountTv.setText(count + "");
-        count = dbManager.getMusicCount(Constant.LIST_MYLOVE);
-        myLoveCountTv.setText(count + "");
-        count = dbManager.getMusicCount(Constant.LIST_MYPLAY);
+
         myPLCountTv.setText("(" + count + ")");
         adapter.updateDataList();
     }
@@ -143,13 +127,11 @@ public class HomeActivity extends PlayBarBaseActivity {
      */
     private void init(){
         localMusicLl = (LinearLayout) findViewById(R.id.home_local_music_ll);
-        lastPlayLl = (LinearLayout) findViewById(R.id.home_recently_music_ll);
-        myLoveLl = (LinearLayout) findViewById(R.id.home_my_love_music_ll);
+
         myListTitleLl = (LinearLayout) findViewById(R.id.home_my_list_title_ll);
         listView = (ListView)findViewById(R.id.home_my_list_lv);
         localMusicCountTv = (TextView) findViewById(R.id.home_local_music_count_tv);
-        lastPlayCountTv = (TextView) findViewById(R.id.home_recently_music_count_tv);
-        myLoveCountTv = (TextView) findViewById(R.id.home_my_love_music_count_tv);
+
         myPLCountTv = (TextView) findViewById(R.id.home_my_list_count_tv);
         myPLArrowIv = (ImageView) findViewById(R.id.home_my_pl_arror_iv);
         myPLAddIv = (ImageView) findViewById(R.id.home_my_pl_add_iv);
@@ -162,23 +144,7 @@ public class HomeActivity extends PlayBarBaseActivity {
             }
         });
 
-        lastPlayLl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,LastMyloveActivity.class);
-                intent.putExtra(Constant.LABEL,Constant.LABEL_LAST);
-                startActivity(intent);
-            }
-        });
 
-        myLoveLl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,LastMyloveActivity.class);
-                intent.putExtra(Constant.LABEL,Constant.LABEL_MYLOVE);
-                startActivity(intent);
-            }
-        });
 
         playListInfos = dbManager.getMyPlayList();
         adapter = new HomeListViewAdapter(playListInfos,this,dbManager);
@@ -287,30 +253,6 @@ public class HomeActivity extends PlayBarBaseActivity {
      * 加载背景图
      */
     private void loadBingPic(){
-        HttpUtil.sendOkHttpRequest(HttpUtil.requestBingPic, new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    final String bingPic = response.body().string();
-                    MyMusicUtil.setBingShared(bingPic);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Glide.with(MyApplication.getContext()).load(bingPic).into(navHeadIv);
-                        }
-                    });
-                }catch (Exception e){
-                    e.printStackTrace();
-                    navHeadIv.setImageResource(R.drawable.bg_playlist);
-                }
-            }
 
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                navHeadIv.setImageResource(R.drawable.bg_playlist);
-            }
-        });
-        navHeadIv.setImageResource(R.drawable.bg_playlist);
     }
 }

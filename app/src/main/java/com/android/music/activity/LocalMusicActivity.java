@@ -15,9 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.music.R;
-import com.android.music.fragment.AlbumFragment;
 import com.android.music.fragment.FolderFragment;
-import com.android.music.fragment.SingerFragment;
 import com.android.music.fragment.SingleFragment;
 import com.android.music.util.Constant;
 import com.android.music.view.MyViewPager;
@@ -38,8 +36,8 @@ public class LocalMusicActivity extends PlayBarBaseActivity {
     private List<String> titleList = new ArrayList<>(4);
     private List<Fragment> fragments = new ArrayList<>(4);
     private SingleFragment singleFragment;
-    private SingerFragment singerFragment;
-    private AlbumFragment albumFragment;
+
+
     private FolderFragment folderFragment;
     private TextView nothingTv;
 
@@ -94,7 +92,7 @@ public class LocalMusicActivity extends PlayBarBaseActivity {
     }
 
 
-    //滑动布局
+
     private void addTapData() {
         titleList.add("");
 

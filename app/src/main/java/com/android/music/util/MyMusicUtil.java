@@ -1,22 +1,14 @@
 package com.android.music.util;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.music.R;
 import com.android.music.database.DBManager;
-import com.android.music.entity.AlbumInfo;
 import com.android.music.entity.FolderInfo;
 import com.android.music.entity.MusicInfo;
-import com.android.music.entity.SingerInfo;
 import com.android.music.service.MusicPlayerService;
 
 import java.io.File;
@@ -192,58 +184,8 @@ public class MyMusicUtil {
         return value;
     }
 
-    //按歌手分组
-    public static ArrayList<SingerInfo> groupBySinger(ArrayList list) {
-        Map<String, List<MusicInfo>> musicMap = new HashMap<>();
-        ArrayList<SingerInfo> singerInfoList = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            MusicInfo musicInfo = (MusicInfo) list.get(i);
-            if (musicMap.containsKey(musicInfo.getSinger())) {
-                ArrayList singerList = (ArrayList) musicMap.get(musicInfo.getSinger());
-                singerList.add(musicInfo);
-            } else {
-                ArrayList temp = new ArrayList();
-                temp.add(musicInfo);
-                musicMap.put(musicInfo.getSinger(), temp);
-            }
-        }
 
-        for (Map.Entry<String,List<MusicInfo>> entry : musicMap.entrySet()) {
-            System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
-            SingerInfo singerInfo = new SingerInfo();
-            singerInfo.setName(entry.getKey());
-            singerInfo.setCount(entry.getValue().size());
-            singerInfoList.add(singerInfo);
-        }
-        return singerInfoList;
-    }
 
-    //按专辑分组
-    public static ArrayList<AlbumInfo> groupByAlbum(ArrayList list) {
-        Map<String, List<MusicInfo>> musicMap = new HashMap<>();
-        ArrayList<AlbumInfo> albumInfoList = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            MusicInfo musicInfo = (MusicInfo) list.get(i);
-            if (musicMap.containsKey(musicInfo.getAlbum())) {
-                ArrayList albumList = (ArrayList) musicMap.get(musicInfo.getAlbum());
-                albumList.add(musicInfo);
-            } else {
-                ArrayList temp = new ArrayList();
-                temp.add(musicInfo);
-                musicMap.put(musicInfo.getAlbum(), temp);
-            }
-        }
-
-        for (Map.Entry<String,List<MusicInfo>> entry : musicMap.entrySet()) {
-            AlbumInfo albumInfo = new AlbumInfo();
-            albumInfo.setName(entry.getKey());
-            albumInfo.setSinger(entry.getValue().get(0).getSinger());
-            albumInfo.setCount(entry.getValue().size());
-            albumInfoList.add(albumInfo);
-        }
-
-        return albumInfoList;
-    }
 
     //按文件夹分组
     public static ArrayList<FolderInfo> groupByFolder(ArrayList list) {

@@ -90,8 +90,8 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
         backIv.setOnClickListener(this);
         playIv.setOnClickListener(this);
         menuIv.setOnClickListener(this);
-        preIv.setOnClickListener(this);
-        nextIv.setOnClickListener(this);
+        preIv.setOnClickListener(this);        nextIv.setOnClickListener(this);
+
         modeIv.setOnClickListener(this);
 
         setSeekBarBg();
@@ -99,7 +99,7 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener {
         initTitle();
         initPlayIv();
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {      //时间轴
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {

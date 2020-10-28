@@ -105,7 +105,7 @@ public class MusicPopMenuWindow extends PopupWindow{
         nameTv = (TextView)view.findViewById(R.id.popwin_name_tv);
 //        playLl = (LinearLayout) view.findViewById(R.id.popwin_play_ll);
         addLl = (LinearLayout) view.findViewById(R.id.popwin_add_rl);
-        loveLl = (LinearLayout) view.findViewById(R.id.popwin_love_ll);
+
 //        ringLl = (LinearLayout) view.findViewById(R.id.popwin_ring_ll);
         deleteLl = (LinearLayout) view.findViewById(R.id.popwin_delete_ll);
         cancelLl = (LinearLayout) view.findViewById(R.id.popwin_cancel_ll);
@@ -143,19 +143,7 @@ public class MusicPopMenuWindow extends PopupWindow{
             }
         });
 
-        loveLl.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
-                MyMusicUtil.setMusicMylove(activity,musicInfo.getId());
-                dismiss();
-                View view = LayoutInflater.from(activity).inflate(R.layout.my_love_toast,null);
-                Toast toast = new Toast(activity);
-                toast.setView(view);
-                toast.setDuration(Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER,0,0);
-                toast.show();
-            }
-        });
 
 //        ringLl.setOnClickListener(new View.OnClickListener() {
 //
